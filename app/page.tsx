@@ -23,6 +23,7 @@ function Arrow({ down = false }: { down?: boolean }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
     const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => {
@@ -102,12 +103,12 @@ export default function Home() {
           <h2 data-reveal>Everything a growing<br/>environment needs.</h2>
         </div>
         <div className="service-list">
-          {services.map((service) => (
-            <article className="service-row" key={service.no} data-reveal>
+          {services.map((service, index) => (
+            <article className={`service-row ${activeService === index ? "active" : ""}`} key={service.no} data-reveal role="button" tabIndex={0} aria-pressed={activeService === index} onClick={() => setActiveService(index)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActiveService(index); } }}>
               <span className="service-no">{service.no}</span>
               <h3>{service.title}</h3>
               <div className="service-detail"><p>{service.copy}</p><ul>{service.points.map((point) => <li key={point}>{point}</li>)}</ul></div>
-              <div className="service-image"><Image unoptimized src={service.image} alt="" fill sizes="260px" /></div>
+              <div className="service-image"><Image unoptimized src={service.image} alt={`${service.title} by Kuza Africa`} fill sizes="300px" /></div>
               <span className="service-arrow"><Arrow /></span>
             </article>
           ))}
