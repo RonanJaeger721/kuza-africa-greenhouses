@@ -46,8 +46,7 @@ export default function Home() {
       </div>
       <header className="nav-shell">
         <a href="#top" className="brand" aria-label="Kuza Africa home">
-          <span className="real-logo"><Image unoptimized src="/images/kuza-logo.jpeg" alt="Kuza Africa" fill sizes="56px" /></span>
-          <span>Kuza Africa<small>Greenhouse specialists</small></span>
+          <Image className="full-logo" unoptimized src="/images/kuza-logo.jpeg" alt="Kuza Africa" width={1080} height={1080} priority />
         </a>
         <nav aria-label="Main navigation">
           <a href="#about">About</a><a href="#services">Services</a><a href="#work">Projects</a>
@@ -155,7 +154,7 @@ export default function Home() {
         </form>
       </section>
 
-      <footer><a href="#top" className="footer-brand"><span className="brand-mark"><i/><i/><i/></span>Kuza Africa</a><p>Greenhouse construction and irrigation systems.<br/>22 Mutare Road, Harare · +263 78 814 2328</p><a href="#top" className="back-top">Back to top ↑</a><small>© {new Date().getFullYear()} Kuza Africa</small></footer>
+      <footer><a href="#top" className="footer-brand" aria-label="Kuza Africa home"><Image className="footer-logo" unoptimized src="/images/kuza-logo.jpeg" alt="Kuza Africa" width={1080} height={1080} /></a><p>Greenhouse construction and irrigation systems.<br/>22 Mutare Road, Harare · +263 78 814 2328</p><a href="#top" className="back-top">Back to top ↑</a><small>© {new Date().getFullYear()} Kuza Africa</small></footer>
     </main>
   );
 }
