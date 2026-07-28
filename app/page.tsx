@@ -4,9 +4,9 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 
 const services = [
-  { no: "01", title: "Fix & Supply", copy: "Purpose-built greenhouse structures, supplied and assembled around your site, crop and growing ambition.", image: "/images/construction-team.jpeg" },
-  { no: "02", title: "Drip Irrigation", copy: "Measured water delivery designed to bring consistency to every row and efficiency to every growing cycle.", image: "/images/irrigation.jpeg" },
-  { no: "03", title: "Complete Service", copy: "One professional team from site assessment and structure to covering, irrigation and final handover.", image: "/images/completed-house.jpeg" },
+  { no: "01", title: "Fix & Supply", copy: "Purpose-built greenhouse structures, supplied and assembled around your site, crop and growing ambition.", points: ["Site-responsive structures", "Frame, covering and ventilation", "Professional installation"], image: "/images/construction-team.jpeg" },
+  { no: "02", title: "Drip Irrigation", copy: "Measured water delivery designed to bring consistency to every row and efficiency to every growing cycle.", points: ["Efficient water distribution", "Even crop coverage", "Installed and tested on site"], image: "/images/irrigation.jpeg" },
+  { no: "03", title: "Complete Service", copy: "One professional team from site assessment and structure to covering, irrigation and final handover.", points: ["Planning and site assessment", "Construction and irrigation", "Testing and practical handover"], image: "/images/completed-house.jpeg" },
 ];
 
 const gallery = [
@@ -57,6 +57,9 @@ export default function Home() {
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         {[["About", "about"], ["Services", "services"], ["Projects", "work"], ["Contact", "contact"]].map(([label,id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}<Arrow /></a>)}
       </div>
+      <a className="whatsapp-float" href="https://wa.me/263788142328?text=Hello%20Kuza%20Africa%2C%20I%20would%20like%20to%20discuss%20a%20greenhouse%20project." target="_blank" rel="noreferrer" aria-label="Chat with Kuza Africa on WhatsApp">
+        <span className="wa-icon">☎</span><span className="wa-copy"><small>WhatsApp us</small>+263 78 814 2328</span>
+      </a>
 
       <section className="hero" id="top">
         <div className="hero-copy">
@@ -80,10 +83,15 @@ export default function Home() {
         <div className="manifesto-grid">
           <h2 data-reveal>We create the space<br/>where growth <em>begins.</em></h2>
           <div data-reveal>
-            <p>Kuza Africa is a greenhouse construction company helping growers turn open ground into controlled, productive environments.</p>
-            <p>We combine practical local knowledge with professional installation—from structural frames and protective covering to water-smart drip systems.</p>
+            <p>Kuza Africa is a Harare-based greenhouse construction company helping growers turn open ground into controlled, productive environments.</p>
+            <p>We combine practical local knowledge with professional installation—from structural frames and protective covering to water-smart drip systems. The result is one coordinated solution, built around the realities of the site and the needs of the grower.</p>
             <a href="#services" className="text-link">Explore our expertise <Arrow /></a>
           </div>
+        </div>
+        <div className="company-facts" data-reveal>
+          <div><strong>01</strong><span>One accountable team from planning to handover</span></div>
+          <div><strong>02</strong><span>Greenhouse structure and irrigation considered together</span></div>
+          <div><strong>03</strong><span>Based in Harare and built for local growing conditions</span></div>
         </div>
         <div className="growth-line" aria-hidden="true"><span/><i/><i/><i/><i/><i/></div>
       </section>
@@ -98,12 +106,16 @@ export default function Home() {
             <article className="service-row" key={service.no} data-reveal>
               <span className="service-no">{service.no}</span>
               <h3>{service.title}</h3>
-              <p>{service.copy}</p>
+              <div className="service-detail"><p>{service.copy}</p><ul>{service.points.map((point) => <li key={point}>{point}</li>)}</ul></div>
               <div className="service-image"><Image unoptimized src={service.image} alt="" fill sizes="260px" /></div>
               <span className="service-arrow"><Arrow /></span>
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="statement" aria-label="Kuza Africa service promise">
+        <div className="statement-track"><span>Assess</span><i>•</i><span>Design</span><i>•</i><span>Supply</span><i>•</i><span>Construct</span><i>•</i><span>Irrigate</span><i>•</i><span>Grow</span></div>
       </section>
 
       <section className="process">
@@ -131,7 +143,7 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contact">
-        <div className="contact-intro" data-reveal><p className="section-label light">Start a project</p><h2>Let’s build<br/>what grows <em>next.</em></h2><p>Tell us about your site and what you plan to grow. We’ll help shape the right greenhouse solution.</p></div>
+        <div className="contact-intro" data-reveal><p className="section-label light">Start a project</p><h2>Let’s build<br/>what grows <em>next.</em></h2><p>Tell us about your site and what you plan to grow. We’ll help shape the right greenhouse solution.</p><div className="contact-lines"><a href="https://wa.me/263788142328" target="_blank" rel="noreferrer"><small>WhatsApp / Call</small>+263 78 814 2328</a><a href="https://www.google.com/maps/search/?api=1&query=22+Mutare+Road+Harare" target="_blank" rel="noreferrer"><small>Visit us</small>22 Mutare Road, Harare</a></div></div>
         <form onSubmit={submit} data-reveal>
           <label><span>Your name</span><input required name="name" placeholder="Full name" /></label>
           <label><span>Phone or email</span><input required name="contact" placeholder="How should we reach you?" /></label>
@@ -142,7 +154,7 @@ export default function Home() {
         </form>
       </section>
 
-      <footer><a href="#top" className="footer-brand"><span className="brand-mark"><i/><i/><i/></span>Kuza Africa</a><p>Greenhouse construction<br/>and irrigation systems.</p><a href="#top" className="back-top">Back to top ↑</a><small>© {new Date().getFullYear()} Kuza Africa</small></footer>
+      <footer><a href="#top" className="footer-brand"><span className="brand-mark"><i/><i/><i/></span>Kuza Africa</a><p>Greenhouse construction and irrigation systems.<br/>22 Mutare Road, Harare · +263 78 814 2328</p><a href="#top" className="back-top">Back to top ↑</a><small>© {new Date().getFullYear()} Kuza Africa</small></footer>
     </main>
   );
 }
